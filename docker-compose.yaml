@@ -9,10 +9,10 @@ services:
     command: sh -c "yarn install && yarn start"
 
   backend:
-    image: python:3.12.4-alpine
+    image: rust:1.79
     working_dir: /app
     ports:
       - "5000:5000"
     volumes:
       - "./backend:/app"
-    command: sh -c "pip install -r requirements.txt && python app.py"
+    command: sh -c "cargo build --release && ./target/release/karaoke-rust"
